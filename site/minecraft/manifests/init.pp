@@ -3,7 +3,7 @@ class minecraft (
   $install_dir = '/opt/minecraft'
 ){
   file {$install_dir:
-    ensue => directory,
+    ensure => directory,
   }
   file {"${install_dir}/minecraft_server.jar":
     ensure => file,
@@ -19,7 +19,7 @@ class minecraft (
   }
   file {'/etc/systemd/system/minecraft.service':
     ensure => file,
-    source => epp('minecraft/minecarft.service',{
+    content => epp('minecraft/minecarft.service',{
       install_dir => $install_dir
     })
   } 
